@@ -1,7 +1,7 @@
 from pathlib import Path 
 from collections import defaultdict
 
-path_to_file = input()
+path_to_file = input('write path to file: \n')
 path_to_file = Path(path_to_file)
 
 if not path_to_file.exists:
