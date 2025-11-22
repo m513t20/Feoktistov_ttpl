@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COW Compiler</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .container {
+            display: grid;
+            gap: 20px;
+        }
+        .editor-section, .output-section {
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            font-family: monospace;
+        }
+        button {
+            padding: 10px 20px;
+            background: #007acc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #005a9e;
+        }
+        .output {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 3px;
+            min-height: 100px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>COW Language Compiler</h1>
+        
+        <div class="editor-section">
+            <h3>COW Code</h3>
+            <textarea id="codeInput" placeholder="Enter your COW code here...">
+                MoO MoO MoO MoO MoO MoO MoO MoO MoO MoO 
+                MOO moO MoO MoO MoO MoO MoO MoO MoO MoO 
+                MoO MoO MoO MoO MoO MoO MoO MoO MoO MoO 
+                MoO MoO MoO MoO MoO MoO MoO MoO MoO MoO 
+                MoO MoO MoO MoO MoO mOo MOo MOo MOo MOo 
+                MOo MOo MOo MOo MOo MOo MOo MOo MOo MOo 
+                MOo MOo MOo MOo MOo MOo MOo MOo MOo MOo 
+                MOo MOo MOo MoO MoO MoO MoO MoO MoO MoO 
+                MoO MoO MoO MoO MoO MoO MoO MoO MoO MoO 
+                MoO MoO MoO MoO MoO MoO MoO MoO MoO MoO 
+                MoO MoO MoO MoO Moo moO MoO Moo MoO MoO 
+                MoO MoO MoO MoO MoO MoO MoO Moo mOo mOo 
+                mOo mOo mOo mOo mOo mOo mOo mOo Moo moO 
+                moO Moo MoO MoO Moo MOo MOo MOo MOo MOo 
+                MOo MOo MOo MOo MOo MOo MOo MOo MOo MOo 
+                MOo MOo MOo MOo MOo MOo MOo MOo MOo MOo 
+                MOo MOo MOo MOo MOo MOo MOo MOo MOo MOo 
+                MOo MOo MOo MOo MOo MOo Moo MoO MoO MoO 
+                Moo
+            </textarea>
+                            
+            <h4>Input (optional)</h4>
+            <input type="text" id="inputData" placeholder="Enter input data...">
+            
+            <button onclick="runCompiler()">Run COW Code</button>
+        </div>
+
+        <div class="output-section">
+            <h3>Output</h3>
+            <div id="output" class="output"></div>
+            <h3>Output digits</h3>
+            <div id="output_digits" class="output"></div>
+        </div>
+    </div>
+
+    <script src="dist/compiler.js"></script>
+    <script>
+        function runCompiler() {
+            const code = document.getElementById('codeInput').value;
+            const input = document.getElementById('inputData').value;
+            const outputDiv = document.getElementById('output');
+            const outputDivDigits = document.getElementById('output_digits');
+            
+            try {
+                const compiler = new CowCompiler(code, input);
+                compiler.interpret();
+                outputDiv.textContent = compiler.output || 'No output';
+                outputDivDigits.textContent = compiler.get_nums()
+            } catch (error) {
+                outputDiv.textContent = 'Error: ' + error.message;
+                outputDivDigits.textContent = 'Error: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>
