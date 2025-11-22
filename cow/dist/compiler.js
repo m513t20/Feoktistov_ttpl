@@ -1,6 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CowCompiler = void 0;
 const INSTRUCTIONS = {
     0: 'MoO', 1: 'MOo', 2: 'moO', 3: 'mOo',
     4: 'moo', 5: 'MOO', 6: 'OOM', 7: 'oom',
@@ -129,5 +127,4 @@ class CowCompiler {
         return res;
     }
 }
-exports.CowCompiler = CowCompiler;
 ;
