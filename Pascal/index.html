@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pascal Compiler</title>
+</head>
+<body>
+    <h1>Pascal Compiler in Browser</h1>
+    <textarea id="pascalCode" rows="15" cols="50">
+BEGIN
+    y := 2;
+    BEGIN
+        a := 3;
+        a := a;
+        b := 10 + a + 10 * y / 4;
+        c := a - b
+    END;
+    x := 11;
+END.
+    </textarea>
+    <br><br>
+    <button onclick="runCompiler()">Run Pascal Code</button>
+    <div id="output"></div>
+
+    <script src="./dist/compiler.js"></script>
+    <script>
+        function runCompiler() {
+            try {
+                let code = document.getElementById('pascalCode').value;
+                let compiler = new PascalCompiler();
+                let result = compiler.run(code);
+                
+                let output = "<h3>Variables after execution:</h3>";
+                output += "<ul>";
+                for (let [key, value] of result) {
+                    output += `<li>${key} = ${value}</li>`;
+                }
+                output += "</ul>";
+                
+                document.getElementById('output').innerHTML = output;
+            } catch (error) {
+                document.getElementById('output').innerHTML = 
+                    `<span style="color: red">Error: ${error.message}</span>`;
+            }
+        }
+    </script>
+</body>
+</html>
