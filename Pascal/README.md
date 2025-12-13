@@ -33,4 +33,4 @@ npm run build
 npm run test:coverage
 ```
 5. открыть [html файл](./coverage/index.html) в браузере.
-6. если снова надо собрать основной компилятор в [коде](./src/compiler.ts) в 7 строке перед `class` убрать `export`
+6. если снова надо собрать основной компилятор в [коде](./src/compiler.ts) в 27 и 188 строках перед `class` убрать `export`
